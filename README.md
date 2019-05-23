@@ -1,7 +1,7 @@
 Strictdom
 =========
 
-Stictdom is a strongly-typed front-end to
+Stictdom is a strictly typed wrapper over
 [Dominate](https://github.com/Knio/dominate/pull/111), a Python library for
 creating and manipulating HTML documents.
 
@@ -16,7 +16,11 @@ Compared to using Dominate directly, strictdom offers:
 Features:
 
 * Nothing new to learn - mostly the same interface as vanilla.
+
 * Stable versioned interface e.g. `strictdom.tags_1` is a frozen view of the spec
+
+* Consistent handling of both [boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes)
+and the weird "boolean-like" attributes like `contenteditable` or `spellcheck`.
 
 
 Example: Vanilla vs Strict

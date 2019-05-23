@@ -1,4 +1,9 @@
-# make.py from Strictdom by Ben Golightly
+# make.py from Strictdom by Ben Golightly <ben@tawesoft.co.uk>
+
+# This file generates the `strictdom/tags_$VERSION.py` code from a
+# machine-readable spec. You will need to first get this from
+# https://github.com/tawesoft/html5spec.json and put it in a
+# sibling directory relative to this directory.
 
 # This file itself is donated to the public domain, but the data it works on
 # - and its output! - is copyright - see COPYING.md
@@ -13,6 +18,7 @@ from pathlib import Path
 
 
 VERSION="1"
+
 srcdir=Path("../html5spec/spec-json/")
 destdir=Path("strictdom")
 
@@ -167,7 +173,13 @@ following sources:
 Redistribution of Strictdom is permitted only in simultaneous accordance with
 the above licenses, namely attribution to all authors under the Creative
 Commons Attribution 4.0 International License, and attribution to all authors
-under the W3C Document License and any additional terms specified.
+under the W3C Document License and also the additional terms specified by the
+W3C Document License.
+
+The easiest way to comply with this license is to include this notice in any
+copies of the software. However, the W3C Document License excludes using this
+software to create a new technical specification (as distinct from
+"implementing" the specifications that exist).
 
 Strictdom is available from `https://github.com/tawesoft/strictdom` and
 `https://www.tawesoft.co.uk/products/open-source-software`. Strictdom also

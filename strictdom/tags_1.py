@@ -1,12 +1,13 @@
 # The HTML Living Standard is Copyright © 2018 WHATWG (Apple, Google, Mozilla,
 # Microsoft) and available under a Creative Commons Attribution 4.0
-# International License: see `https://whatwg.org/` and
-# `https://creativecommons.org/licenses/by/4.0/`
+# International License: see https://whatwg.org/ and
+# https://creativecommons.org/licenses/by/4.0/
 #
 # Accessible Rich Internet Applications (WAI-ARIA) is Copyright © 2013-2019
 # W3C® (MIT, ERCIM, Keio, Beihang) and available under the W3C Document
-# License: see `https://w3c.github.io/aria/` and
-# `https://www.w3.org/Consortium/Legal/2015/doc-license`
+# License: see https://w3c.github.io/aria/ and
+# https://www.w3.org/Consortium/Legal/2015/doc-license or W3C-Document-
+# License.html where provided
 #
 # Based on current published specifications accessed Thu 23 May 13:50:08 UTC
 # 2019
@@ -49,10 +50,10 @@ class Events:
 class ElementType(Enum):
     normal_elements = 0
     foreign_elements = 1
-    the_template_element = 2
-    raw_text_elements = 3
-    void_elements = 4
-    escapable_raw_text_elements = 5
+    escapable_raw_text_elements = 2
+    void_elements = 3
+    the_template_element = 4
+    raw_text_elements = 5
 
 
 class a(dominate.tags.html_tag):
