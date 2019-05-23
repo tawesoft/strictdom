@@ -221,6 +221,8 @@ class Aria:
     \"""
     Holder for all `aria-*` attribute arguments. May be typechecked in future.
 
+    Note that the "aria-" prefix to arguments should be omitted.
+
     e.g. `button(aria=Aria(pressed="false"))`
     \"""
     def __init__(self, **kwargs):
@@ -231,6 +233,8 @@ class Events:
     \"""
     Holder for all `on*` event attribute arguments. May be typechecked in
     future.
+
+    Note that the "on" prefix to arguments should be omitted.
 
     e.g. `button(events=Events(click="alert('Hello world');"))`
     \"""
