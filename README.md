@@ -68,7 +68,6 @@ TODO
 ----
 
 * Typechecked ARIA and Event Handlers
-* Test `escapable-raw-text-elements` and `raw-text-elements` type elements
 
 
 
