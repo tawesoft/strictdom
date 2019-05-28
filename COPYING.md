@@ -1,9 +1,9 @@
 COPYING Strictdom
 ================================================================================
 
-Strictdom is by Ben Golightly (`ben@tawesoft.co.uk`) at Tawesoft Ltd
-(`www.tawesoft.co.uk`) and also incorporates intellectual property from the
-following sources:
+Strictdom is by Ben Golightly (ben@tawesoft.co.uk) at Tawesoft Ltd
+(https://www.tawesoft.co.uk/) and also incorporates intellectual property from
+the following sources:
 
 The HTML Living Standard is Copyright © 2018 WHATWG (Apple, Google, Mozilla,
 Microsoft) and available under a Creative Commons Attribution 4.0
