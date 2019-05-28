@@ -54,10 +54,10 @@ class Events:
 class ElementType(Enum):
     normal_elements = 0
     foreign_elements = 1
-    void_elements = 2
-    the_template_element = 3
-    raw_text_elements = 4
-    escapable_raw_text_elements = 5
+    escapable_raw_text_elements = 2
+    void_elements = 3
+    the_template_element = 4
+    raw_text_elements = 5
 
 
 class a(dominate.tags.html_tag):

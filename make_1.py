@@ -195,15 +195,15 @@ copies of the software. However, the W3C Document License excludes using this
 software to create a new technical specification (as distinct from
 "implementing" the specifications that exist).
 
-Strictdom is available from `https://github.com/tawesoft/strictdom` and
-`https://www.tawesoft.co.uk/products/open-source-software`. Strictdom also
-optionally relies on `https://github.com/tawesoft/html5spec` to download and
+Strictdom is available from https://github.com/tawesoft/strictdom and
+https://www.tawesoft.co.uk/products/open-source-software. Strictdom also
+optionally relies on https://github.com/tawesoft/html5spec to download and
 extract a machine-readable spec.
 
 Strictdom is a wrapper around Dominate, available from
-`https://github.com/Knio/dominate` and licensed under the
+https://github.com/Knio/dominate and licensed under the
 GNU Lesser General Public License v3.0: see
-`https://raw.githubusercontent.com/Knio/dominate/master/LICENSE.txt`
+https://raw.githubusercontent.com/Knio/dominate/master/LICENSE.txt
 """)
 
 
