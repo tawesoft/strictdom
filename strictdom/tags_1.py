@@ -71,11 +71,11 @@ class a(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
         download:           Optional[str] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -96,12 +96,12 @@ class a(dominate.tags.html_tag):
         rel:                Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         target:             Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         type:               Optional[str] = None
     ) -> None:
         optional = {}
@@ -109,14 +109,14 @@ class a(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if download is not None: optional['download'] = download
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if href is not None: optional['href'] = href
         if hreflang is not None: optional['hreflang'] = hreflang
         if id is not None: optional['id'] = id
@@ -125,7 +125,7 @@ class a(dominate.tags.html_tag):
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
@@ -134,12 +134,12 @@ class a(dominate.tags.html_tag):
         if rel is not None: optional['rel'] = rel
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if target is not None: optional['target'] = target
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
         super().__init__(*args, **optional)
 
@@ -154,10 +154,10 @@ class abbr(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -173,41 +173,41 @@ class abbr(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class address(dominate.tags.html_tag):
@@ -221,10 +221,10 @@ class address(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -240,41 +240,41 @@ class address(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class area(dominate.tags.html_tag):
@@ -290,12 +290,12 @@ class area(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         coords:             Optional[str] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
         download:           Optional[str] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -316,12 +316,12 @@ class area(dominate.tags.html_tag):
         role:               Optional[str] = None,
         shape:              Optional[Literal['circle', 'default', 'poly', 'rect']] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         target:             Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
@@ -329,15 +329,15 @@ class area(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if coords is not None: optional['coords'] = coords
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if download is not None: optional['download'] = download
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if href is not None: optional['href'] = href
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -345,7 +345,7 @@ class area(dominate.tags.html_tag):
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
@@ -355,14 +355,14 @@ class area(dominate.tags.html_tag):
         if role is not None: optional['role'] = role
         if shape is not None: optional['shape'] = shape
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if target is not None: optional['target'] = target
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class article(dominate.tags.html_tag):
     """Self-contained syndicatable or reusable composition"""
@@ -375,10 +375,10 @@ class article(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -394,41 +394,41 @@ class article(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class aside(dominate.tags.html_tag):
@@ -442,10 +442,10 @@ class aside(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -461,41 +461,41 @@ class aside(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class audio(dominate.tags.html_tag):
@@ -510,12 +510,12 @@ class audio(dominate.tags.html_tag):
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         autoplay:           Optional[bool] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         controls:           Optional[bool] = None,
         crossorigin:        Optional[Literal['anonymous', 'use-credentials']] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -534,49 +534,49 @@ class audio(dominate.tags.html_tag):
         preload:            Optional[Literal['auto', 'metadata', 'none']] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         src:                Optional[str] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
-        if autoplay is not None: optional['autoplay'] = autoplay
+        if (autoplay is not None) and autoplay: optional['autoplay'] = "autoplay"
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
-        if controls is not None: optional['controls'] = controls
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
+        if (controls is not None) and controls: optional['controls'] = "controls"
         if crossorigin is not None: optional['crossorigin'] = crossorigin
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
-        if loop is not None: optional['loop'] = loop
-        if muted is not None: optional['muted'] = muted
+        if (loop is not None) and loop: optional['loop'] = "loop"
+        if (muted is not None) and muted: optional['muted'] = "muted"
         if nonce is not None: optional['nonce'] = nonce
         if preload is not None: optional['preload'] = preload
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if src is not None: optional['src'] = src
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class b(dominate.tags.html_tag):
@@ -590,10 +590,10 @@ class b(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -609,41 +609,41 @@ class b(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class base(dominate.tags.html_tag):
@@ -660,10 +660,10 @@ class base(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -680,25 +680,25 @@ class base(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         target:             Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if href is not None: optional['href'] = href
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -706,20 +706,20 @@ class base(dominate.tags.html_tag):
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if target is not None: optional['target'] = target
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class bdi(dominate.tags.html_tag):
     """Text directionality isolation"""
@@ -732,10 +732,10 @@ class bdi(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -751,41 +751,41 @@ class bdi(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class bdo(dominate.tags.html_tag):
@@ -799,10 +799,10 @@ class bdo(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -818,41 +818,41 @@ class bdo(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class blockquote(dominate.tags.html_tag):
@@ -867,10 +867,10 @@ class blockquote(dominate.tags.html_tag):
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         cite:               Optional[str] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -886,11 +886,11 @@ class blockquote(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
@@ -898,30 +898,30 @@ class blockquote(dominate.tags.html_tag):
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if cite is not None: optional['cite'] = cite
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class body(dominate.tags.html_tag):
@@ -935,10 +935,10 @@ class body(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -954,41 +954,41 @@ class body(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class br(dominate.tags.html_tag):
@@ -1004,10 +1004,10 @@ class br(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1023,43 +1023,43 @@ class br(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class button(dominate.tags.html_tag):
     """Button control"""
@@ -1073,11 +1073,11 @@ class button(dominate.tags.html_tag):
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         autofocus:          Optional[bool] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
         disabled:           Optional[bool] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         form:               Optional[str] = None,
@@ -1100,11 +1100,11 @@ class button(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         type:               Optional[Literal['button', 'reset', 'submit']] = None,
         value:              Optional[str] = None
     ) -> None:
@@ -1112,40 +1112,40 @@ class button(dominate.tags.html_tag):
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
-        if autofocus is not None: optional['autofocus'] = autofocus
+        if (autofocus is not None) and autofocus: optional['autofocus'] = "autofocus"
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if disabled is not None: optional['disabled'] = disabled
-        if draggable is not None: optional['draggable'] = draggable
+        if (disabled is not None) and disabled: optional['disabled'] = "disabled"
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
         if formaction is not None: optional['formaction'] = formaction
         if formenctype is not None: optional['formenctype'] = formenctype
         if formmethod is not None: optional['formmethod'] = formmethod
-        if formnovalidate is not None: optional['formnovalidate'] = formnovalidate
+        if (formnovalidate is not None) and formnovalidate: optional['formnovalidate'] = "formnovalidate"
         if formtarget is not None: optional['formtarget'] = formtarget
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
@@ -1161,10 +1161,10 @@ class canvas(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         height:             Optional[str] = None,
@@ -1181,11 +1181,11 @@ class canvas(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         width:              Optional[str] = None
     ) -> None:
         optional = {}
@@ -1193,31 +1193,31 @@ class canvas(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if height is not None: optional['height'] = height
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if width is not None: optional['width'] = width
         super().__init__(*args, **optional)
 
@@ -1232,10 +1232,10 @@ class caption(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1251,41 +1251,41 @@ class caption(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class cite(dominate.tags.html_tag):
@@ -1299,10 +1299,10 @@ class cite(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1318,41 +1318,41 @@ class cite(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class code(dominate.tags.html_tag):
@@ -1366,10 +1366,10 @@ class code(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1385,41 +1385,41 @@ class code(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class col(dominate.tags.html_tag):
@@ -1434,10 +1434,10 @@ class col(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1454,44 +1454,44 @@ class col(dominate.tags.html_tag):
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
         span:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
         if span is not None: optional['span'] = span
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class colgroup(dominate.tags.html_tag):
     """Group of columns in a table"""
@@ -1504,10 +1504,10 @@ class colgroup(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1524,42 +1524,42 @@ class colgroup(dominate.tags.html_tag):
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
         span:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
         if span is not None: optional['span'] = span
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class data(dominate.tags.html_tag):
@@ -1573,10 +1573,10 @@ class data(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1592,11 +1592,11 @@ class data(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         value:              Optional[str] = None
     ) -> None:
         optional = {}
@@ -1604,30 +1604,30 @@ class data(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
 
@@ -1642,10 +1642,10 @@ class datalist(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1661,41 +1661,41 @@ class datalist(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class dd(dominate.tags.html_tag):
@@ -1709,10 +1709,10 @@ class dd(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1728,41 +1728,41 @@ class dd(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class del_(dominate.tags.html_tag):
@@ -1777,11 +1777,11 @@ class del_(dominate.tags.html_tag):
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         cite:               Optional[str] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         datetime:           Optional[str] = None,
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1797,11 +1797,11 @@ class del_(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
@@ -1809,31 +1809,31 @@ class del_(dominate.tags.html_tag):
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if cite is not None: optional['cite'] = cite
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if datetime is not None: optional['datetime'] = datetime
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class details(dominate.tags.html_tag):
@@ -1847,10 +1847,10 @@ class details(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1867,42 +1867,42 @@ class details(dominate.tags.html_tag):
         open:               Optional[bool] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
-        if open is not None: optional['open'] = open
+        if (open is not None) and open: optional['open'] = "open"
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class dfn(dominate.tags.html_tag):
@@ -1916,10 +1916,10 @@ class dfn(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -1935,41 +1935,41 @@ class dfn(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class dialog(dominate.tags.html_tag):
@@ -1983,10 +1983,10 @@ class dialog(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2003,42 +2003,42 @@ class dialog(dominate.tags.html_tag):
         open:               Optional[bool] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
-        if open is not None: optional['open'] = open
+        if (open is not None) and open: optional['open'] = "open"
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class div(dominate.tags.html_tag):
@@ -2055,10 +2055,10 @@ class div(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2074,41 +2074,41 @@ class div(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class dl(dominate.tags.html_tag):
@@ -2122,10 +2122,10 @@ class dl(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2141,41 +2141,41 @@ class dl(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class dt(dominate.tags.html_tag):
@@ -2189,10 +2189,10 @@ class dt(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2208,41 +2208,41 @@ class dt(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class em(dominate.tags.html_tag):
@@ -2256,10 +2256,10 @@ class em(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2275,41 +2275,41 @@ class em(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class embed(dominate.tags.html_tag):
@@ -2324,10 +2324,10 @@ class embed(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         height:             Optional[str] = None,
@@ -2344,12 +2344,12 @@ class embed(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         src:                Optional[str] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         type:               Optional[str] = None,
         width:              Optional[str] = None
         , **kwargs # any extra attributes
@@ -2359,39 +2359,39 @@ class embed(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if height is not None: optional['height'] = height
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if src is not None: optional['src'] = src
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
         if width is not None: optional['width'] = width
         assert not (set(kwargs) & set(optional)) # collisions
         optional.update(kwargs)
 
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class fieldset(dominate.tags.html_tag):
     """Group of form controls"""
@@ -2404,11 +2404,11 @@ class fieldset(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
         disabled:           Optional[bool] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         form:               Optional[str] = None,
@@ -2426,44 +2426,44 @@ class fieldset(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if disabled is not None: optional['disabled'] = disabled
-        if draggable is not None: optional['draggable'] = draggable
+        if (disabled is not None) and disabled: optional['disabled'] = "disabled"
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class figcaption(dominate.tags.html_tag):
@@ -2477,10 +2477,10 @@ class figcaption(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2496,41 +2496,41 @@ class figcaption(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class figure(dominate.tags.html_tag):
@@ -2544,10 +2544,10 @@ class figure(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2563,41 +2563,41 @@ class figure(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class footer(dominate.tags.html_tag):
@@ -2611,10 +2611,10 @@ class footer(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2630,41 +2630,41 @@ class footer(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class form(dominate.tags.html_tag):
@@ -2681,10 +2681,10 @@ class form(dominate.tags.html_tag):
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         autocomplete:       Optional[Literal['off', 'on']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enctype:            Optional[Literal['application/x-www-form-urlencoded', 'multipart/form-data', 'text/plain']] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
@@ -2704,12 +2704,12 @@ class form(dominate.tags.html_tag):
         novalidate:         Optional[bool] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         target:             Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accept_charset is not None: optional['accept_charset'] = accept_charset
@@ -2719,35 +2719,35 @@ class form(dominate.tags.html_tag):
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if autocomplete is not None: optional['autocomplete'] = autocomplete
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enctype is not None: optional['enctype'] = enctype
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if method is not None: optional['method'] = method
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
-        if novalidate is not None: optional['novalidate'] = novalidate
+        if (novalidate is not None) and novalidate: optional['novalidate'] = "novalidate"
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if target is not None: optional['target'] = target
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class h1(dominate.tags.html_tag):
@@ -2761,10 +2761,10 @@ class h1(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2780,41 +2780,41 @@ class h1(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class h2(dominate.tags.html_tag):
@@ -2828,10 +2828,10 @@ class h2(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2847,41 +2847,41 @@ class h2(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class h3(dominate.tags.html_tag):
@@ -2895,10 +2895,10 @@ class h3(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2914,41 +2914,41 @@ class h3(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class h4(dominate.tags.html_tag):
@@ -2962,10 +2962,10 @@ class h4(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -2981,41 +2981,41 @@ class h4(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class h5(dominate.tags.html_tag):
@@ -3029,10 +3029,10 @@ class h5(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -3048,41 +3048,41 @@ class h5(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class h6(dominate.tags.html_tag):
@@ -3096,10 +3096,10 @@ class h6(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -3115,41 +3115,41 @@ class h6(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class head(dominate.tags.html_tag):
@@ -3163,10 +3163,10 @@ class head(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -3182,41 +3182,41 @@ class head(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class header(dominate.tags.html_tag):
@@ -3230,10 +3230,10 @@ class header(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -3249,41 +3249,41 @@ class header(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class hgroup(dominate.tags.html_tag):
@@ -3297,10 +3297,10 @@ class hgroup(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -3316,41 +3316,41 @@ class hgroup(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class hr(dominate.tags.html_tag):
@@ -3365,10 +3365,10 @@ class hr(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -3384,43 +3384,43 @@ class hr(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class html(dominate.tags.html_tag):
     """Root element"""
@@ -3433,10 +3433,10 @@ class html(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -3453,42 +3453,42 @@ class html(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if manifest is not None: optional['manifest'] = manifest
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class i(dominate.tags.html_tag):
@@ -3502,10 +3502,10 @@ class i(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -3521,41 +3521,41 @@ class i(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class iframe(dominate.tags.html_tag):
@@ -3572,10 +3572,10 @@ class iframe(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         height:             Optional[str] = None,
@@ -3595,38 +3595,38 @@ class iframe(dominate.tags.html_tag):
         role:               Optional[str] = None,
         sandbox:            Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         src:                Optional[str] = None,
         srcdoc:             Optional[str] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         width:              Optional[str] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if allow is not None: optional['allow'] = allow
-        if allowfullscreen is not None: optional['allowfullscreen'] = allowfullscreen
-        if allowpaymentrequest is not None: optional['allowpaymentrequest'] = allowpaymentrequest
+        if (allowfullscreen is not None) and allowfullscreen: optional['allowfullscreen'] = "allowfullscreen"
+        if (allowpaymentrequest is not None) and allowpaymentrequest: optional['allowpaymentrequest'] = "allowpaymentrequest"
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if height is not None: optional['height'] = height
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if name is not None: optional['name'] = name
@@ -3635,13 +3635,13 @@ class iframe(dominate.tags.html_tag):
         if role is not None: optional['role'] = role
         if sandbox is not None: optional['sandbox'] = sandbox
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if src is not None: optional['src'] = src
         if srcdoc is not None: optional['srcdoc'] = srcdoc
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if width is not None: optional['width'] = width
         super().__init__(*args, **optional)
 
@@ -3658,12 +3658,12 @@ class img(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         crossorigin:        Optional[Literal['anonymous', 'use-credentials']] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         decoding:           Optional[Literal['async', 'auto', 'sync']] = None,
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         height:             Optional[str] = None,
@@ -3682,13 +3682,13 @@ class img(dominate.tags.html_tag):
         referrerpolicy:     Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         src:                Optional[str] = None,
         srcset:             Optional[str] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         usemap:             Optional[str] = None,
         width:              Optional[str] = None
     ) -> None:
@@ -3698,41 +3698,41 @@ class img(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if crossorigin is not None: optional['crossorigin'] = crossorigin
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if decoding is not None: optional['decoding'] = decoding
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if height is not None: optional['height'] = height
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
-        if ismap is not None: optional['ismap'] = ismap
+        if (ismap is not None) and ismap: optional['ismap'] = "ismap"
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if referrerpolicy is not None: optional['referrerpolicy'] = referrerpolicy
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if src is not None: optional['src'] = src
         if srcset is not None: optional['srcset'] = srcset
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if usemap is not None: optional['usemap'] = usemap
         if width is not None: optional['width'] = width
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class input(dominate.tags.html_tag):
     """Form control"""
@@ -3751,12 +3751,12 @@ class input(dominate.tags.html_tag):
         autofocus:          Optional[bool] = None,
         checked:            Optional[bool] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
         dirname:            Optional[str] = None,
         disabled:           Optional[bool] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         form:               Optional[str] = None,
@@ -3791,13 +3791,13 @@ class input(dominate.tags.html_tag):
         role:               Optional[str] = None,
         size:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         src:                Optional[str] = None,
         step:               Optional[str] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         type:               Optional[str] = None,
         value:              Optional[str] = None,
         width:              Optional[str] = None
@@ -3809,32 +3809,32 @@ class input(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if autocomplete is not None: optional['autocomplete'] = autocomplete
-        if autofocus is not None: optional['autofocus'] = autofocus
-        if checked is not None: optional['checked'] = checked
+        if (autofocus is not None) and autofocus: optional['autofocus'] = "autofocus"
+        if (checked is not None) and checked: optional['checked'] = "checked"
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if dirname is not None: optional['dirname'] = dirname
-        if disabled is not None: optional['disabled'] = disabled
-        if draggable is not None: optional['draggable'] = draggable
+        if (disabled is not None) and disabled: optional['disabled'] = "disabled"
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
         if formaction is not None: optional['formaction'] = formaction
         if formenctype is not None: optional['formenctype'] = formenctype
         if formmethod is not None: optional['formmethod'] = formmethod
-        if formnovalidate is not None: optional['formnovalidate'] = formnovalidate
+        if (formnovalidate is not None) and formnovalidate: optional['formnovalidate'] = "formnovalidate"
         if formtarget is not None: optional['formtarget'] = formtarget
         if height is not None: optional['height'] = height
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if list is not None: optional['list'] = list
@@ -3842,28 +3842,28 @@ class input(dominate.tags.html_tag):
         if maxlength is not None: optional['maxlength'] = maxlength
         if min is not None: optional['min'] = min
         if minlength is not None: optional['minlength'] = minlength
-        if multiple is not None: optional['multiple'] = multiple
+        if (multiple is not None) and multiple: optional['multiple'] = "multiple"
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
         if pattern is not None: optional['pattern'] = pattern
         if placeholder is not None: optional['placeholder'] = placeholder
-        if readonly is not None: optional['readonly'] = readonly
-        if required is not None: optional['required'] = required
+        if (readonly is not None) and readonly: optional['readonly'] = "readonly"
+        if (required is not None) and required: optional['required'] = "required"
         if role is not None: optional['role'] = role
         if size is not None: optional['size'] = size
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if src is not None: optional['src'] = src
         if step is not None: optional['step'] = step
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
         if value is not None: optional['value'] = value
         if width is not None: optional['width'] = width
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class ins(dominate.tags.html_tag):
     """An addition to the document"""
@@ -3877,11 +3877,11 @@ class ins(dominate.tags.html_tag):
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         cite:               Optional[str] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         datetime:           Optional[str] = None,
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -3897,11 +3897,11 @@ class ins(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
@@ -3909,31 +3909,31 @@ class ins(dominate.tags.html_tag):
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if cite is not None: optional['cite'] = cite
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if datetime is not None: optional['datetime'] = datetime
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class kbd(dominate.tags.html_tag):
@@ -3947,10 +3947,10 @@ class kbd(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -3966,41 +3966,41 @@ class kbd(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class label(dominate.tags.html_tag):
@@ -4014,10 +4014,10 @@ class label(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         for_:               Optional[str] = None, # 'for' is a keyword
@@ -4034,42 +4034,42 @@ class label(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if for_ is not None: optional['html_for'] = for_
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class legend(dominate.tags.html_tag):
@@ -4083,10 +4083,10 @@ class legend(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4102,41 +4102,41 @@ class legend(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class li(dominate.tags.html_tag):
@@ -4150,10 +4150,10 @@ class li(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4169,11 +4169,11 @@ class li(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         value:              Optional[str] = None
     ) -> None:
         optional = {}
@@ -4181,30 +4181,30 @@ class li(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
 
@@ -4221,11 +4221,11 @@ class link(dominate.tags.html_tag):
         as_:                Optional[str] = None, # 'as' is a keyword
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         crossorigin:        Optional[Literal['anonymous', 'use-credentials']] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4250,11 +4250,11 @@ class link(dominate.tags.html_tag):
         role:               Optional[str] = None,
         sizes:              Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         type:               Optional[str] = None
     ) -> None:
         optional = {}
@@ -4263,14 +4263,14 @@ class link(dominate.tags.html_tag):
         if as_ is not None: optional['_as'] = as_
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if crossorigin is not None: optional['crossorigin'] = crossorigin
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if href is not None: optional['href'] = href
         if hreflang is not None: optional['hreflang'] = hreflang
         if id is not None: optional['id'] = id
@@ -4282,7 +4282,7 @@ class link(dominate.tags.html_tag):
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if media is not None: optional['media'] = media
@@ -4292,14 +4292,14 @@ class link(dominate.tags.html_tag):
         if role is not None: optional['role'] = role
         if sizes is not None: optional['sizes'] = sizes
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class main(dominate.tags.html_tag):
     """Container for the dominant contents of the document"""
@@ -4312,10 +4312,10 @@ class main(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4331,41 +4331,41 @@ class main(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class map(dominate.tags.html_tag):
@@ -4379,10 +4379,10 @@ class map(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4399,42 +4399,42 @@ class map(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class mark(dominate.tags.html_tag):
@@ -4448,10 +4448,10 @@ class mark(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4467,41 +4467,41 @@ class mark(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class math(dominate.tags.html_tag):
@@ -4536,10 +4536,10 @@ class menu(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4555,41 +4555,41 @@ class menu(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class meta(dominate.tags.html_tag):
@@ -4606,10 +4606,10 @@ class meta(dominate.tags.html_tag):
         charset:            Optional[Literal['utf-8']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
         content:            Optional[str] = None,
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4627,11 +4627,11 @@ class meta(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
@@ -4640,13 +4640,13 @@ class meta(dominate.tags.html_tag):
         if charset is not None: optional['charset'] = charset
         if class_ is not None: optional['cls'] = class_
         if content is not None: optional['content'] = content
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if http_equiv is not None: optional['http_equiv'] = http_equiv
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4654,20 +4654,20 @@ class meta(dominate.tags.html_tag):
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class meter(dominate.tags.html_tag):
     """Gauge"""
@@ -4680,10 +4680,10 @@ class meter(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4704,11 +4704,11 @@ class meter(dominate.tags.html_tag):
         optimum:            Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         value:              Optional[str] = None
     ) -> None:
         optional = {}
@@ -4716,13 +4716,13 @@ class meter(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if high is not None: optional['high'] = high
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4730,7 +4730,7 @@ class meter(dominate.tags.html_tag):
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if low is not None: optional['low'] = low
@@ -4740,11 +4740,11 @@ class meter(dominate.tags.html_tag):
         if optimum is not None: optional['optimum'] = optimum
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
 
@@ -4759,10 +4759,10 @@ class nav(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4778,41 +4778,41 @@ class nav(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class noscript(dominate.tags.html_tag):
@@ -4826,10 +4826,10 @@ class noscript(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4845,41 +4845,41 @@ class noscript(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class object(dominate.tags.html_tag):
@@ -4893,11 +4893,11 @@ class object(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         data:               Optional[str] = None,
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         form:               Optional[str] = None,
@@ -4916,11 +4916,11 @@ class object(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         type:               Optional[str] = None,
         usemap:             Optional[str] = None,
         width:              Optional[str] = None
@@ -4930,34 +4930,34 @@ class object(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if data is not None: optional['data'] = data
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
         if height is not None: optional['height'] = height
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
         if usemap is not None: optional['usemap'] = usemap
         if width is not None: optional['width'] = width
@@ -4974,10 +4974,10 @@ class ol(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -4994,12 +4994,12 @@ class ol(dominate.tags.html_tag):
         reversed:           Optional[bool] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         start:              Optional[str] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         type:               Optional[Literal['1', 'A', 'I', 'a', 'i']] = None
     ) -> None:
         optional = {}
@@ -5007,32 +5007,32 @@ class ol(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
-        if reversed is not None: optional['reversed'] = reversed
+        if (reversed is not None) and reversed: optional['reversed'] = "reversed"
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if start is not None: optional['start'] = start
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
         super().__init__(*args, **optional)
 
@@ -5047,11 +5047,11 @@ class optgroup(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
         disabled:           Optional[bool] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5068,43 +5068,43 @@ class optgroup(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if disabled is not None: optional['disabled'] = disabled
-        if draggable is not None: optional['draggable'] = draggable
+        if (disabled is not None) and disabled: optional['disabled'] = "disabled"
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if label is not None: optional['label'] = label
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class option(dominate.tags.html_tag):
@@ -5118,11 +5118,11 @@ class option(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
         disabled:           Optional[bool] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5140,11 +5140,11 @@ class option(dominate.tags.html_tag):
         role:               Optional[str] = None,
         selected:           Optional[bool] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         value:              Optional[str] = None
     ) -> None:
         optional = {}
@@ -5152,33 +5152,33 @@ class option(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if disabled is not None: optional['disabled'] = disabled
-        if draggable is not None: optional['draggable'] = draggable
+        if (disabled is not None) and disabled: optional['disabled'] = "disabled"
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if label is not None: optional['label'] = label
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
-        if selected is not None: optional['selected'] = selected
+        if (selected is not None) and selected: optional['selected'] = "selected"
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
 
@@ -5193,10 +5193,10 @@ class output(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         for_:               Optional[str] = None, # 'for' is a keyword
@@ -5215,44 +5215,44 @@ class output(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if for_ is not None: optional['html_for'] = for_
         if form is not None: optional['form'] = form
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class p(dominate.tags.html_tag):
@@ -5266,10 +5266,10 @@ class p(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5285,41 +5285,41 @@ class p(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class param(dominate.tags.html_tag):
@@ -5334,10 +5334,10 @@ class param(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5354,11 +5354,11 @@ class param(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         value:              Optional[str] = None
     ) -> None:
         optional = {}
@@ -5366,34 +5366,34 @@ class param(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class picture(dominate.tags.html_tag):
     """Image"""
@@ -5406,10 +5406,10 @@ class picture(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5425,41 +5425,41 @@ class picture(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class pre(dominate.tags.html_tag):
@@ -5474,10 +5474,10 @@ class pre(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5493,41 +5493,41 @@ class pre(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class progress(dominate.tags.html_tag):
@@ -5541,10 +5541,10 @@ class progress(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5561,11 +5561,11 @@ class progress(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         value:              Optional[str] = None
     ) -> None:
         optional = {}
@@ -5573,31 +5573,31 @@ class progress(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if max is not None: optional['max'] = max
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
 
@@ -5613,10 +5613,10 @@ class q(dominate.tags.html_tag):
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         cite:               Optional[str] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5632,11 +5632,11 @@ class q(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
@@ -5644,30 +5644,30 @@ class q(dominate.tags.html_tag):
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if cite is not None: optional['cite'] = cite
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class rp(dominate.tags.html_tag):
@@ -5681,10 +5681,10 @@ class rp(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5700,41 +5700,41 @@ class rp(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class rt(dominate.tags.html_tag):
@@ -5748,10 +5748,10 @@ class rt(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5767,41 +5767,41 @@ class rt(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class ruby(dominate.tags.html_tag):
@@ -5815,10 +5815,10 @@ class ruby(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5834,41 +5834,41 @@ class ruby(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class s(dominate.tags.html_tag):
@@ -5882,10 +5882,10 @@ class s(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5901,41 +5901,41 @@ class s(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class samp(dominate.tags.html_tag):
@@ -5949,10 +5949,10 @@ class samp(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -5968,41 +5968,41 @@ class samp(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class script(dominate.tags.html_tag):
@@ -6018,12 +6018,12 @@ class script(dominate.tags.html_tag):
         async:              Optional[bool] = None,
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         crossorigin:        Optional[Literal['anonymous', 'use-credentials']] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         defer:              Optional[bool] = None,
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6041,29 +6041,29 @@ class script(dominate.tags.html_tag):
         referrerpolicy:     Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         src:                Optional[str] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         type:               Optional[str] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
-        if async is not None: optional['async'] = async
+        if (async is not None) and async: optional['async'] = "async"
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if crossorigin is not None: optional['crossorigin'] = crossorigin
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
-        if defer is not None: optional['defer'] = defer
+        if (defer is not None) and defer: optional['defer'] = "defer"
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if integrity is not None: optional['integrity'] = integrity
@@ -6071,21 +6071,26 @@ class script(dominate.tags.html_tag):
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if referrerpolicy is not None: optional['referrerpolicy'] = referrerpolicy
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if src is not None: optional['src'] = src
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
-        super().__init__(*args, **optional)
+        if args:
+            assert len(args) == 1
+            assert "</script>" not in args[0].lower()
+            super().__init__(dominate.util.raw(*args), **optional)
+        else:
+            super().__init__(**optional)
 
 class section(dominate.tags.html_tag):
     """Generic document or application section"""
@@ -6098,10 +6103,10 @@ class section(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6117,41 +6122,41 @@ class section(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class select(dominate.tags.html_tag):
@@ -6167,11 +6172,11 @@ class select(dominate.tags.html_tag):
         autocomplete:       Optional[str] = None,
         autofocus:          Optional[bool] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
         disabled:           Optional[bool] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         form:               Optional[str] = None,
@@ -6192,49 +6197,49 @@ class select(dominate.tags.html_tag):
         role:               Optional[str] = None,
         size:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if autocomplete is not None: optional['autocomplete'] = autocomplete
-        if autofocus is not None: optional['autofocus'] = autofocus
+        if (autofocus is not None) and autofocus: optional['autofocus'] = "autofocus"
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if disabled is not None: optional['disabled'] = disabled
-        if draggable is not None: optional['draggable'] = draggable
+        if (disabled is not None) and disabled: optional['disabled'] = "disabled"
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
-        if multiple is not None: optional['multiple'] = multiple
+        if (multiple is not None) and multiple: optional['multiple'] = "multiple"
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
-        if required is not None: optional['required'] = required
+        if (required is not None) and required: optional['required'] = "required"
         if role is not None: optional['role'] = role
         if size is not None: optional['size'] = size
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class slot(dominate.tags.html_tag):
@@ -6248,10 +6253,10 @@ class slot(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6268,42 +6273,42 @@ class slot(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class small(dominate.tags.html_tag):
@@ -6317,10 +6322,10 @@ class small(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6336,41 +6341,41 @@ class small(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class source(dominate.tags.html_tag):
@@ -6385,10 +6390,10 @@ class source(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6406,13 +6411,13 @@ class source(dominate.tags.html_tag):
         role:               Optional[str] = None,
         sizes:              Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         src:                Optional[str] = None,
         srcset:             Optional[str] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         type:               Optional[str] = None
     ) -> None:
         optional = {}
@@ -6420,20 +6425,20 @@ class source(dominate.tags.html_tag):
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if media is not None: optional['media'] = media
@@ -6441,16 +6446,16 @@ class source(dominate.tags.html_tag):
         if role is not None: optional['role'] = role
         if sizes is not None: optional['sizes'] = sizes
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if src is not None: optional['src'] = src
         if srcset is not None: optional['srcset'] = srcset
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class span(dominate.tags.html_tag):
     """Generic phrasing container"""
@@ -6463,10 +6468,10 @@ class span(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6482,41 +6487,41 @@ class span(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class strong(dominate.tags.html_tag):
@@ -6530,10 +6535,10 @@ class strong(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6549,41 +6554,41 @@ class strong(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class style(dominate.tags.html_tag):
@@ -6598,10 +6603,10 @@ class style(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6618,43 +6623,48 @@ class style(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if media is not None: optional['media'] = media
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
-        super().__init__(*args, **optional)
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
+        if args:
+            assert len(args) == 1
+            assert "</style>" not in args[0].lower()
+            super().__init__(dominate.util.raw(*args), **optional)
+        else:
+            super().__init__(**optional)
 
 class sub(dominate.tags.html_tag):
     """Subscript"""
@@ -6667,10 +6677,10 @@ class sub(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6686,41 +6696,41 @@ class sub(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class summary(dominate.tags.html_tag):
@@ -6734,10 +6744,10 @@ class summary(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6753,41 +6763,41 @@ class summary(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class sup(dominate.tags.html_tag):
@@ -6801,10 +6811,10 @@ class sup(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6820,41 +6830,41 @@ class sup(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class svg(dominate.tags.html_tag):
@@ -6889,10 +6899,10 @@ class table(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6908,41 +6918,41 @@ class table(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class tbody(dominate.tags.html_tag):
@@ -6956,10 +6966,10 @@ class tbody(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -6975,41 +6985,41 @@ class tbody(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class td(dominate.tags.html_tag):
@@ -7024,10 +7034,10 @@ class td(dominate.tags.html_tag):
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
         colspan:            Optional[str] = None,
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         headers:            Optional[str] = None,
@@ -7045,11 +7055,11 @@ class td(dominate.tags.html_tag):
         role:               Optional[str] = None,
         rowspan:            Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
@@ -7057,32 +7067,32 @@ class td(dominate.tags.html_tag):
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if colspan is not None: optional['colspan'] = colspan
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if headers is not None: optional['headers'] = headers
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if rowspan is not None: optional['rowspan'] = rowspan
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class template(dominate.tags.html_tag):
@@ -7096,10 +7106,10 @@ class template(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -7115,47 +7125,48 @@ class template(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class textarea(dominate.tags.html_tag):
     """Multiline text controls"""
     name='textarea'
     kind=ElementType.escapable_raw_text_elements
+    is_pretty=False
 
     def __init__(self,
         *args,
@@ -7165,12 +7176,12 @@ class textarea(dominate.tags.html_tag):
         autofocus:          Optional[bool] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
         cols:               Optional[str] = None,
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
         dirname:            Optional[str] = None,
         disabled:           Optional[bool] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         form:               Optional[str] = None,
@@ -7194,37 +7205,37 @@ class textarea(dominate.tags.html_tag):
         role:               Optional[str] = None,
         rows:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         wrap:               Optional[Literal['hard', 'soft']] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
-        if autofocus is not None: optional['autofocus'] = autofocus
+        if (autofocus is not None) and autofocus: optional['autofocus'] = "autofocus"
         if class_ is not None: optional['cls'] = class_
         if cols is not None: optional['cols'] = cols
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if dirname is not None: optional['dirname'] = dirname
-        if disabled is not None: optional['disabled'] = disabled
-        if draggable is not None: optional['draggable'] = draggable
+        if (disabled is not None) and disabled: optional['disabled'] = "disabled"
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if maxlength is not None: optional['maxlength'] = maxlength
@@ -7232,16 +7243,16 @@ class textarea(dominate.tags.html_tag):
         if name is not None: optional['name'] = name
         if nonce is not None: optional['nonce'] = nonce
         if placeholder is not None: optional['placeholder'] = placeholder
-        if readonly is not None: optional['readonly'] = readonly
-        if required is not None: optional['required'] = required
+        if (readonly is not None) and readonly: optional['readonly'] = "readonly"
+        if (required is not None) and required: optional['required'] = "required"
         if role is not None: optional['role'] = role
         if rows is not None: optional['rows'] = rows
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if wrap is not None: optional['wrap'] = wrap
         super().__init__(*args, **optional)
 
@@ -7256,10 +7267,10 @@ class tfoot(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -7275,41 +7286,41 @@ class tfoot(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class th(dominate.tags.html_tag):
@@ -7325,10 +7336,10 @@ class th(dominate.tags.html_tag):
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
         colspan:            Optional[str] = None,
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         headers:            Optional[str] = None,
@@ -7347,11 +7358,11 @@ class th(dominate.tags.html_tag):
         rowspan:            Optional[str] = None,
         scope:              Optional[Literal['col', 'colgroup', 'row', 'rowgroup']] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if abbr is not None: optional['abbr'] = abbr
@@ -7360,21 +7371,21 @@ class th(dominate.tags.html_tag):
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if colspan is not None: optional['colspan'] = colspan
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if headers is not None: optional['headers'] = headers
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
@@ -7382,11 +7393,11 @@ class th(dominate.tags.html_tag):
         if rowspan is not None: optional['rowspan'] = rowspan
         if scope is not None: optional['scope'] = scope
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class thead(dominate.tags.html_tag):
@@ -7400,10 +7411,10 @@ class thead(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -7419,41 +7430,41 @@ class thead(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class time(dominate.tags.html_tag):
@@ -7467,11 +7478,11 @@ class time(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         datetime:           Optional[str] = None,
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -7487,42 +7498,42 @@ class time(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if datetime is not None: optional['datetime'] = datetime
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class title(dominate.tags.html_tag):
@@ -7536,10 +7547,10 @@ class title(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -7555,41 +7566,41 @@ class title(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class tr(dominate.tags.html_tag):
@@ -7603,10 +7614,10 @@ class tr(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -7622,41 +7633,41 @@ class tr(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class track(dominate.tags.html_tag):
@@ -7671,11 +7682,11 @@ class track(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         default:            Optional[bool] = None,
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -7693,34 +7704,34 @@ class track(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         src:                Optional[str] = None,
         srclang:            Optional[str] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
-        if default is not None: optional['default'] = default
+        if (default is not None) and default: optional['default'] = "default"
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if kind is not None: optional['kind'] = kind
         if label is not None: optional['label'] = label
@@ -7728,15 +7739,15 @@ class track(dominate.tags.html_tag):
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if src is not None: optional['src'] = src
         if srclang is not None: optional['srclang'] = srclang
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
-        assert args is None
+        assert not args
 
 class u(dominate.tags.html_tag):
     """Unarticulated annotation"""
@@ -7749,10 +7760,10 @@ class u(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -7768,41 +7779,41 @@ class u(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class ul(dominate.tags.html_tag):
@@ -7816,10 +7827,10 @@ class ul(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -7835,41 +7846,41 @@ class ul(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class var(dominate.tags.html_tag):
@@ -7883,10 +7894,10 @@ class var(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -7902,41 +7913,41 @@ class var(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
 
 class video(dominate.tags.html_tag):
@@ -7951,12 +7962,12 @@ class video(dominate.tags.html_tag):
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         autoplay:           Optional[bool] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         controls:           Optional[bool] = None,
         crossorigin:        Optional[Literal['anonymous', 'use-credentials']] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         height:             Optional[str] = None,
@@ -7978,53 +7989,53 @@ class video(dominate.tags.html_tag):
         preload:            Optional[Literal['auto', 'metadata', 'none']] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         src:                Optional[str] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None,
+        translate:          Optional[bool] = None,
         width:              Optional[str] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
-        if autoplay is not None: optional['autoplay'] = autoplay
+        if (autoplay is not None) and autoplay: optional['autoplay'] = "autoplay"
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
-        if controls is not None: optional['controls'] = controls
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
+        if (controls is not None) and controls: optional['controls'] = "controls"
         if crossorigin is not None: optional['crossorigin'] = crossorigin
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
         if height is not None: optional['height'] = height
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
-        if loop is not None: optional['loop'] = loop
-        if muted is not None: optional['muted'] = muted
+        if (loop is not None) and loop: optional['loop'] = "loop"
+        if (muted is not None) and muted: optional['muted'] = "muted"
         if nonce is not None: optional['nonce'] = nonce
-        if playsinline is not None: optional['playsinline'] = playsinline
+        if (playsinline is not None) and playsinline: optional['playsinline'] = "playsinline"
         if poster is not None: optional['poster'] = poster
         if preload is not None: optional['preload'] = preload
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if src is not None: optional['src'] = src
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         if width is not None: optional['width'] = width
         super().__init__(*args, **optional)
 
@@ -8041,10 +8052,10 @@ class wbr(dominate.tags.html_tag):
         aria:               Optional[Aria] = None, # `aria-*` attributes
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
-        contenteditable:    Optional[Literal['false', 'true']] = None,
+        contenteditable:    Optional[bool] = None,
         custom:             Optional[Mapping[str, str]] = None, # Custom `data-*` attributes
         dir:                Optional[Literal['auto', 'ltr', 'rtl']] = None,
-        draggable:          Optional[Literal['false', 'true']] = None,
+        draggable:          Optional[bool] = None,
         enterkeyhint:       Optional[Literal['done', 'enter', 'go', 'next', 'previous', 'search', 'send']] = None,
         events:             Optional[Events] = None, # `on*` event attributes
         hidden:             Optional[bool] = None,
@@ -8060,41 +8071,41 @@ class wbr(dominate.tags.html_tag):
         nonce:              Optional[str] = None,
         role:               Optional[str] = None,
         slot:               Optional[str] = None,
-        spellcheck:         Optional[Literal['false', 'true']] = None,
+        spellcheck:         Optional[bool] = None,
         style:              Optional[str] = None,
         tabindex:           Optional[str] = None,
         title:              Optional[str] = None,
-        translate:          Optional[Literal['no', 'yes']] = None
+        translate:          Optional[bool] = None
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
-        if contenteditable is not None: optional['contenteditable'] = contenteditable
+        if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
-        if draggable is not None: optional['draggable'] = draggable
+        if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
         if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
-        if hidden is not None: optional['hidden'] = hidden
+        if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
         if is_ is not None: optional['_is'] = is_
         if itemid is not None: optional['itemid'] = itemid
         if itemprop is not None: optional['itemprop'] = itemprop
         if itemref is not None: optional['itemref'] = itemref
-        if itemscope is not None: optional['itemscope'] = itemscope
+        if (itemscope is not None) and itemscope: optional['itemscope'] = "itemscope"
         if itemtype is not None: optional['itemtype'] = itemtype
         if lang is not None: optional['lang'] = lang
         if nonce is not None: optional['nonce'] = nonce
         if role is not None: optional['role'] = role
         if slot is not None: optional['slot'] = slot
-        if spellcheck is not None: optional['spellcheck'] = spellcheck
+        if spellcheck is not None: optional['spellcheck'] = "true" if spellcheck else "false"
         if style is not None: optional['style'] = style
         if tabindex is not None: optional['tabindex'] = tabindex
         if title is not None: optional['title'] = title
-        if translate is not None: optional['translate'] = translate
+        if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
-        assert args is None
+        assert not args
 

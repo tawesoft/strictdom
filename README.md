@@ -53,16 +53,22 @@ Example: Vanilla vs Strict
     TypeError: __init__() got an unexpected keyword argument 'some_invalid_tag'
 
 
+Usage
+-----
+
+* Install with `sudo pip3 install strictdom --upgrade --no-cache-dir`
+
+* Build from source with `python3 make_1.py` (requires
+  [html5spec](https://github.com/tawesoft/html5spec)) in a sibling directory and
+  test with `pytest`.
+
+
 
 TODO
 ----
 
-* Tests
-* Fix handling of booleans at the Strictdom layer to avoid mypy complaining
-  about mixing string and bool values in a dict.
-* Fix handling of booleans at the Strictdom layer so that weird
-  "true"|"false", "yes"|"no" attributes can be simple booleans.
-
+* Typechecked ARIA and Event Handlers
+* Test `escapable-raw-text-elements` and `raw-text-elements` type elements
 
 
 

@@ -35,7 +35,7 @@ with (srcdir / "element-types.json").open("r") as fp:
 
 # Special options for pretty formatting
 special_element_inline = ["br", "wbr"]
-special_element_no_pretty = ["script", "style", "pre"]
+special_element_no_pretty = ["script", "style", "pre", "textarea"]
 
 # Translate names to avoid collisions with keywords
 special_element_names = set(keyword.kwlist)
@@ -65,11 +65,11 @@ def get_attribute(element, attribute):
 def get_attributes(element, attribute_names):
     for attribute in attribute_names:
         if attribute == "aria":
-            attr = {"value_type": None}
+            attr = {"value_type": None, "value_keywords": []}
         elif attribute == "custom":
-            attr = {"value_type": None}
+            attr = {"value_type": None, "value_keywords": []}
         elif attribute == "events":
-            attr = {"value_type": None}
+            attr = {"value_type": None, "value_keywords": []}
         else:
             attr = get_attribute(element, attribute)
 
@@ -90,6 +90,7 @@ def fmt_attribute_param(arg):
     orig_k = k
     cmt = ""
     value_type = v["value_type"]
+    value_keywords = set(v["value_keywords"])
 
     comma = "" if last else ","
 
@@ -110,7 +111,12 @@ def fmt_attribute_param(arg):
     elif value_type == "Boolean attribute":
         t = "Optional[bool]"
     elif value_type == "Keywords":
-        t = "Optional[Literal["+(", ".join(map(repr, v["value_keywords"])))+"]]"
+        if value_keywords == set(["yes", "no"]):
+            t = "Optional[bool]"
+        elif value_keywords == set(["true", "false"]):
+            t = "Optional[bool]"
+        else:
+            t = "Optional[Literal["+(", ".join(map(repr, v["value_keywords"])))+"]]"
     else:
         t = "Optional[str]"
 
@@ -128,6 +134,7 @@ def fmt_attribute_assign(arg):
     orig_k = k
     cmt = ""
     value_type = v["value_type"]
+    value_keywords = set(v["value_keywords"])
 
     comma = "" if last else ","
 
@@ -150,7 +157,14 @@ def fmt_attribute_assign(arg):
     elif k == "events":
         return "if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})"
     else:
-        return "if %s is not None: optional[%s] = %s" % (k, repr(kd), k)
+        if value_type == "Boolean attribute":
+            return "if (%s is not None) and %s: optional[%s] = \"%s\"" % (k, k, repr(kd), k)
+        elif value_keywords == set(["yes", "no"]):
+            return "if %s is not None: optional[%s] = \"yes\" if %s else \"no\"" % (k, repr(kd), k)
+        elif value_keywords == set(["true", "false"]):
+            return "if %s is not None: optional[%s] = \"true\" if %s else \"false\"" % (k, repr(kd), k)
+        else:
+            return "if %s is not None: optional[%s] = %s" % (k, repr(kd), k)
 
 
 with Path("COPYING.md").open("w") as fp:
@@ -183,8 +197,8 @@ software to create a new technical specification (as distinct from
 
 Strictdom is available from `https://github.com/tawesoft/strictdom` and
 `https://www.tawesoft.co.uk/products/open-source-software`. Strictdom also
-relies on `https://github.com/tawesoft/html5spec.json` to download
-and extract a machine-readable spec.
+optionally relies on `https://github.com/tawesoft/html5spec` to download and
+extract a machine-readable spec.
 
 Strictdom is a wrapper around Dominate, available from
 `https://github.com/Knio/dominate` and licensed under the
@@ -321,7 +335,14 @@ class ElementType(Enum):
 
         if is_single:
             fp.write("\n        super().__init__(**optional)")
-            fp.write("\n        assert args is None")
+            fp.write("\n        assert not args")
+        elif kind == "raw_text_elements": # script, style
+            fp.write("\n        if args:")
+            fp.write("\n            assert len(args) == 1")
+            fp.write("\n            assert \"</%s>\" not in args[0].lower()" % element)
+            fp.write("\n            super().__init__(dominate.util.raw(*args), **optional)")
+            fp.write("\n        else:")
+            fp.write("\n            super().__init__(**optional)")
         else:
             fp.write("\n        super().__init__(*args, **optional)")
 

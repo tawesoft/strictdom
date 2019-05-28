@@ -31,8 +31,8 @@ software to create a new technical specification (as distinct from
 
 Strictdom is available from `https://github.com/tawesoft/strictdom` and
 `https://www.tawesoft.co.uk/products/open-source-software`. Strictdom also
-relies on `https://github.com/tawesoft/html5spec.json` to download
-and extract a machine-readable spec.
+optionally relies on `https://github.com/tawesoft/html5spec` to download and
+extract a machine-readable spec.
 
 Strictdom is a wrapper around Dominate, available from
 `https://github.com/Knio/dominate` and licensed under the
