@@ -15,4 +15,3 @@ def list_lastitems(xs):
     e.g. `xs -> (x0, False), (x1, False), ..., (xLast, True)`"""
     for x, y in pairwise(xs):
         yield x, y is None
-

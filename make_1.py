@@ -8,13 +8,12 @@
 # This file itself is donated to the public domain, but the data it works on
 # - and its output! - is copyright - see COPYING.md
 
-import itertools
 import json
 import keyword
 import textwrap
 
-from util import *
 from pathlib import Path
+from util import list_lastitems
 
 
 VERSION="1"
@@ -38,7 +37,8 @@ special_element_inline = ["br", "wbr"]
 special_element_no_pretty = ["script", "style", "pre", "textarea"]
 
 # Translate names to avoid collisions with keywords
-special_element_names = set(keyword.kwlist)
+special_names = set(keyword.kwlist) \
+    | set(["async", "await"]) # added in Python 3.7
 
 
 def docstring(x):
@@ -95,7 +95,7 @@ def fmt_attribute_param(arg):
     comma = "" if last else ","
 
     k = k.replace("-", "_") # http-equiv -> http_equiv
-    if k in keyword.kwlist:
+    if k in special_names:
         k = k + "_" # e.g. del -> del_
         cmt = " # %s is a keyword" % repr(orig_k)
 
@@ -125,40 +125,38 @@ def fmt_attribute_param(arg):
     return "        %s: %s%s = None%s%s" % (k, lpad, t, comma, cmt)
 
 
-
 def fmt_attribute_assign(arg):
     """Creates a dict assignment for a non-None keyword attribute"""
 
-    attr, last = arg
+    attr, _ = arg
     k, v = attr["name"], attr
-    orig_k = k
-    cmt = ""
+
     value_type = v["value_type"]
     value_keywords = set(v["value_keywords"])
 
-    comma = "" if last else ","
-
     k = k.replace("-", "_") # http-equiv -> http_equiv
-    if k in keyword.kwlist:
+    if k in special_names:
         k = k + "_" # e.g. del -> del_
 
     kd = k # Dominate version of key
+    ko = k # Boolean version of key
     if k == "class_":
         kd = "cls"
     elif k == "for_":
         kd = "html_for"
     elif k.endswith("_"):
         kd = "_" + k[:-1]
+        ko = k[:-1]
 
     if k == "aria":
-        return "if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})"
+        return "if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})"
     elif k == "custom":
-        return "if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})"
+        return "if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})"
     elif k == "events":
-        return "if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})"
+        return "if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})"
     else:
         if value_type == "Boolean attribute":
-            return "if (%s is not None) and %s: optional[%s] = \"%s\"" % (k, k, repr(kd), k)
+            return "if (%s is not None) and %s: optional[%s] = \"%s\"" % (k, k, repr(kd), ko)
         elif value_keywords == set(["yes", "no"]):
             return "if %s is not None: optional[%s] = \"yes\" if %s else \"no\"" % (k, repr(kd), k)
         elif value_keywords == set(["true", "false"]):
@@ -274,7 +272,7 @@ class ElementType(Enum):
             continue
 
         # avoid keyword collisions
-        if element in special_element_names:
+        if element in special_names:
             name = element + "_"
         else:
             name = element
@@ -297,15 +295,15 @@ class ElementType(Enum):
                 kind = element_type.replace("-", "_")
         is_single = (kind == "void_elements")
 
-        fp.write("    name=%s\n" % repr(element))
-        fp.write("    kind=ElementType.%s\n" % kind.replace("-", "_"))
-        
+        fp.write("    name = %s\n" % repr(element))
+        fp.write("    kind = ElementType.%s\n" % kind.replace("-", "_"))
+
         if is_single:
-            fp.write("    is_single=True\n")
+            fp.write("    is_single = True\n")
         if element in special_element_no_pretty:
-            fp.write("    is_pretty=False\n")
+            fp.write("    is_pretty = False\n")
         if element in special_element_inline:
-            fp.write("    is_inline=True\n")
+            fp.write("    is_inline = True\n")
 
         fp.write("\n")
 
@@ -346,16 +344,4 @@ class ElementType(Enum):
         else:
             fp.write("\n        super().__init__(*args, **optional)")
 
-        fp.write("\n\n")
-
-
-
-
-
-
-
-
-
-
-
-
+        fp.write("\n")

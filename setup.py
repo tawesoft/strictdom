@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='strictdom',
-    version='0.2',
+    version='0.3',
     description='strictly typed wrapper around Knio\'s Dominate',
     long_description='strictly typed wrapper around Knio\'s Dominate, a Python library for creating and manipulating HTML documents',
     url='https://github.com/tawesoft/strictdom',

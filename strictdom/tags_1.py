@@ -55,15 +55,15 @@ class ElementType(Enum):
     normal_elements = 0
     foreign_elements = 1
     escapable_raw_text_elements = 2
-    raw_text_elements = 3
-    the_template_element = 4
+    the_template_element = 3
+    raw_text_elements = 4
     void_elements = 5
 
 
 class a(dominate.tags.html_tag):
     """Hyperlink"""
-    name='a'
-    kind=ElementType.normal_elements
+    name = 'a'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -106,16 +106,16 @@ class a(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if download is not None: optional['download'] = download
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if href is not None: optional['href'] = href
         if hreflang is not None: optional['hreflang'] = hreflang
@@ -142,11 +142,10 @@ class a(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
         super().__init__(*args, **optional)
-
 class abbr(dominate.tags.html_tag):
     """Abbreviation"""
-    name='abbr'
-    kind=ElementType.normal_elements
+    name = 'abbr'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -181,15 +180,15 @@ class abbr(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -209,11 +208,10 @@ class abbr(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class address(dominate.tags.html_tag):
     """Contact information for a page or article element"""
-    name='address'
-    kind=ElementType.normal_elements
+    name = 'address'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -248,15 +246,15 @@ class address(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -276,12 +274,11 @@ class address(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class area(dominate.tags.html_tag):
     """Hyperlink or dead area on an image map"""
-    name='area'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'area'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -326,17 +323,17 @@ class area(dominate.tags.html_tag):
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if alt is not None: optional['alt'] = alt
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if coords is not None: optional['coords'] = coords
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if download is not None: optional['download'] = download
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if href is not None: optional['href'] = href
         if id is not None: optional['id'] = id
@@ -363,11 +360,10 @@ class area(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
         assert not args
-
 class article(dominate.tags.html_tag):
     """Self-contained syndicatable or reusable composition"""
-    name='article'
-    kind=ElementType.normal_elements
+    name = 'article'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -402,15 +398,15 @@ class article(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -430,11 +426,10 @@ class article(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class aside(dominate.tags.html_tag):
     """Sidebar for tangentially related content"""
-    name='aside'
-    kind=ElementType.normal_elements
+    name = 'aside'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -469,15 +464,15 @@ class aside(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -497,11 +492,10 @@ class aside(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class audio(dominate.tags.html_tag):
     """Audio player"""
-    name='audio'
-    kind=ElementType.normal_elements
+    name = 'audio'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -543,18 +537,18 @@ class audio(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if (autoplay is not None) and autoplay: optional['autoplay'] = "autoplay"
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if (controls is not None) and controls: optional['controls'] = "controls"
         if crossorigin is not None: optional['crossorigin'] = crossorigin
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -578,11 +572,10 @@ class audio(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class b(dominate.tags.html_tag):
     """Keywords"""
-    name='b'
-    kind=ElementType.normal_elements
+    name = 'b'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -617,15 +610,15 @@ class b(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -645,14 +638,13 @@ class b(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class base(dominate.tags.html_tag):
     """
     Base URL and default target browsing context for hyperlinks and forms
     """
-    name='base'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'base'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -689,15 +681,15 @@ class base(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if href is not None: optional['href'] = href
         if id is not None: optional['id'] = id
@@ -720,11 +712,10 @@ class base(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
         assert not args
-
 class bdi(dominate.tags.html_tag):
     """Text directionality isolation"""
-    name='bdi'
-    kind=ElementType.normal_elements
+    name = 'bdi'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -759,15 +750,15 @@ class bdi(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -787,11 +778,10 @@ class bdi(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class bdo(dominate.tags.html_tag):
     """Text directionality formatting"""
-    name='bdo'
-    kind=ElementType.normal_elements
+    name = 'bdo'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -826,15 +816,15 @@ class bdo(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -854,11 +844,10 @@ class bdo(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class blockquote(dominate.tags.html_tag):
     """A section quoted from another source"""
-    name='blockquote'
-    kind=ElementType.normal_elements
+    name = 'blockquote'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -894,16 +883,16 @@ class blockquote(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if cite is not None: optional['cite'] = cite
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -923,11 +912,10 @@ class blockquote(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class body(dominate.tags.html_tag):
     """Document body"""
-    name='body'
-    kind=ElementType.normal_elements
+    name = 'body'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -962,15 +950,15 @@ class body(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -990,13 +978,12 @@ class body(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class br(dominate.tags.html_tag):
     """Line break, e.g. in poem or postal address"""
-    name='br'
-    kind=ElementType.void_elements
-    is_single=True
-    is_inline=True
+    name = 'br'
+    kind = ElementType.void_elements
+    is_single = True
+    is_inline = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -1031,15 +1018,15 @@ class br(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1060,11 +1047,10 @@ class br(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
         assert not args
-
 class button(dominate.tags.html_tag):
     """Button control"""
-    name='button'
-    kind=ElementType.normal_elements
+    name = 'button'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1110,17 +1096,17 @@ class button(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if (autofocus is not None) and autofocus: optional['autofocus'] = "autofocus"
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if (disabled is not None) and disabled: optional['disabled'] = "disabled"
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
         if formaction is not None: optional['formaction'] = formaction
         if formenctype is not None: optional['formenctype'] = formenctype
@@ -1149,11 +1135,10 @@ class button(dominate.tags.html_tag):
         if type is not None: optional['type'] = type
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
-
 class canvas(dominate.tags.html_tag):
     """Scriptable bitmap canvas"""
-    name='canvas'
-    kind=ElementType.normal_elements
+    name = 'canvas'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1190,15 +1175,15 @@ class canvas(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if height is not None: optional['height'] = height
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -1220,11 +1205,10 @@ class canvas(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if width is not None: optional['width'] = width
         super().__init__(*args, **optional)
-
 class caption(dominate.tags.html_tag):
     """Table caption"""
-    name='caption'
-    kind=ElementType.normal_elements
+    name = 'caption'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1259,15 +1243,15 @@ class caption(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1287,11 +1271,10 @@ class caption(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class cite(dominate.tags.html_tag):
     """Title of a work"""
-    name='cite'
-    kind=ElementType.normal_elements
+    name = 'cite'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1326,15 +1309,15 @@ class cite(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1354,11 +1337,10 @@ class cite(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class code(dominate.tags.html_tag):
     """Computer code"""
-    name='code'
-    kind=ElementType.normal_elements
+    name = 'code'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1393,15 +1375,15 @@ class code(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1421,12 +1403,11 @@ class code(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class col(dominate.tags.html_tag):
     """Table column"""
-    name='col'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'col'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -1462,15 +1443,15 @@ class col(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1492,11 +1473,10 @@ class col(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
         assert not args
-
 class colgroup(dominate.tags.html_tag):
     """Group of columns in a table"""
-    name='colgroup'
-    kind=ElementType.normal_elements
+    name = 'colgroup'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1532,15 +1512,15 @@ class colgroup(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1561,11 +1541,10 @@ class colgroup(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class data(dominate.tags.html_tag):
     """Machine-readable equivalent"""
-    name='data'
-    kind=ElementType.normal_elements
+    name = 'data'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1601,15 +1580,15 @@ class data(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1630,11 +1609,10 @@ class data(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
-
 class datalist(dominate.tags.html_tag):
     """Container for options for combo box control"""
-    name='datalist'
-    kind=ElementType.normal_elements
+    name = 'datalist'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1669,15 +1647,15 @@ class datalist(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1697,11 +1675,10 @@ class datalist(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class dd(dominate.tags.html_tag):
     """Content for corresponding dt element(s)"""
-    name='dd'
-    kind=ElementType.normal_elements
+    name = 'dd'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1736,15 +1713,15 @@ class dd(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1764,11 +1741,10 @@ class dd(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class del_(dominate.tags.html_tag):
     """A removal from the document"""
-    name='del'
-    kind=ElementType.normal_elements
+    name = 'del'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1805,17 +1781,17 @@ class del_(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if cite is not None: optional['cite'] = cite
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if datetime is not None: optional['datetime'] = datetime
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1835,11 +1811,10 @@ class del_(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class details(dominate.tags.html_tag):
     """Disclosure control for hiding details"""
-    name='details'
-    kind=ElementType.normal_elements
+    name = 'details'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1875,15 +1850,15 @@ class details(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1904,11 +1879,10 @@ class details(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class dfn(dominate.tags.html_tag):
     """Defining instance"""
-    name='dfn'
-    kind=ElementType.normal_elements
+    name = 'dfn'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -1943,15 +1917,15 @@ class dfn(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -1971,11 +1945,10 @@ class dfn(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class dialog(dominate.tags.html_tag):
     """Dialog box or window"""
-    name='dialog'
-    kind=ElementType.normal_elements
+    name = 'dialog'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2011,15 +1984,15 @@ class dialog(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2040,14 +2013,13 @@ class dialog(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class div(dominate.tags.html_tag):
     """
     Generic flow container, or container for name-value groups in dl
     elements
     """
-    name='div'
-    kind=ElementType.normal_elements
+    name = 'div'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2082,15 +2054,15 @@ class div(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2110,11 +2082,10 @@ class div(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class dl(dominate.tags.html_tag):
     """Association list consisting of zero or more name-value groups"""
-    name='dl'
-    kind=ElementType.normal_elements
+    name = 'dl'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2149,15 +2120,15 @@ class dl(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2177,11 +2148,10 @@ class dl(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class dt(dominate.tags.html_tag):
     """Legend for corresponding dd element(s)"""
-    name='dt'
-    kind=ElementType.normal_elements
+    name = 'dt'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2216,15 +2186,15 @@ class dt(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2244,11 +2214,10 @@ class dt(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class em(dominate.tags.html_tag):
     """Stress emphasis"""
-    name='em'
-    kind=ElementType.normal_elements
+    name = 'em'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2283,15 +2252,15 @@ class em(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2311,12 +2280,11 @@ class em(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class embed(dominate.tags.html_tag):
     """Plugin"""
-    name='embed'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'embed'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -2356,15 +2324,15 @@ class embed(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if height is not None: optional['height'] = height
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -2392,11 +2360,10 @@ class embed(dominate.tags.html_tag):
 
         super().__init__(**optional)
         assert not args
-
 class fieldset(dominate.tags.html_tag):
     """Group of form controls"""
-    name='fieldset'
-    kind=ElementType.normal_elements
+    name = 'fieldset'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2434,16 +2401,16 @@ class fieldset(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if (disabled is not None) and disabled: optional['disabled'] = "disabled"
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -2465,11 +2432,10 @@ class fieldset(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class figcaption(dominate.tags.html_tag):
     """Caption for figure"""
-    name='figcaption'
-    kind=ElementType.normal_elements
+    name = 'figcaption'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2504,15 +2470,15 @@ class figcaption(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2532,11 +2498,10 @@ class figcaption(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class figure(dominate.tags.html_tag):
     """Figure with optional caption"""
-    name='figure'
-    kind=ElementType.normal_elements
+    name = 'figure'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2571,15 +2536,15 @@ class figure(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2599,11 +2564,10 @@ class figure(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class footer(dominate.tags.html_tag):
     """Footer for a page or section"""
-    name='footer'
-    kind=ElementType.normal_elements
+    name = 'footer'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2638,15 +2602,15 @@ class footer(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2666,11 +2630,10 @@ class footer(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class form(dominate.tags.html_tag):
     """User-submittable form"""
-    name='form'
-    kind=ElementType.normal_elements
+    name = 'form'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2715,17 +2678,17 @@ class form(dominate.tags.html_tag):
         if accept_charset is not None: optional['accept_charset'] = accept_charset
         if accesskey is not None: optional['accesskey'] = accesskey
         if action is not None: optional['action'] = action
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if autocomplete is not None: optional['autocomplete'] = autocomplete
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enctype is not None: optional['enctype'] = enctype
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2749,11 +2712,10 @@ class form(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class h1(dominate.tags.html_tag):
     """Section heading"""
-    name='h1'
-    kind=ElementType.normal_elements
+    name = 'h1'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2788,15 +2750,15 @@ class h1(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2816,11 +2778,10 @@ class h1(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class h2(dominate.tags.html_tag):
     """Section heading"""
-    name='h2'
-    kind=ElementType.normal_elements
+    name = 'h2'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2855,15 +2816,15 @@ class h2(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2883,11 +2844,10 @@ class h2(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class h3(dominate.tags.html_tag):
     """Section heading"""
-    name='h3'
-    kind=ElementType.normal_elements
+    name = 'h3'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2922,15 +2882,15 @@ class h3(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -2950,11 +2910,10 @@ class h3(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class h4(dominate.tags.html_tag):
     """Section heading"""
-    name='h4'
-    kind=ElementType.normal_elements
+    name = 'h4'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -2989,15 +2948,15 @@ class h4(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -3017,11 +2976,10 @@ class h4(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class h5(dominate.tags.html_tag):
     """Section heading"""
-    name='h5'
-    kind=ElementType.normal_elements
+    name = 'h5'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -3056,15 +3014,15 @@ class h5(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -3084,11 +3042,10 @@ class h5(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class h6(dominate.tags.html_tag):
     """Section heading"""
-    name='h6'
-    kind=ElementType.normal_elements
+    name = 'h6'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -3123,15 +3080,15 @@ class h6(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -3151,11 +3108,10 @@ class h6(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class head(dominate.tags.html_tag):
     """Container for document metadata"""
-    name='head'
-    kind=ElementType.normal_elements
+    name = 'head'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -3190,15 +3146,15 @@ class head(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -3218,11 +3174,10 @@ class head(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class header(dominate.tags.html_tag):
     """Introductory or navigational aids for a page or section"""
-    name='header'
-    kind=ElementType.normal_elements
+    name = 'header'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -3257,15 +3212,15 @@ class header(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -3285,11 +3240,10 @@ class header(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class hgroup(dominate.tags.html_tag):
     """heading group"""
-    name='hgroup'
-    kind=ElementType.normal_elements
+    name = 'hgroup'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -3324,15 +3278,15 @@ class hgroup(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -3352,12 +3306,11 @@ class hgroup(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class hr(dominate.tags.html_tag):
     """Thematic break"""
-    name='hr'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'hr'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -3392,15 +3345,15 @@ class hr(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -3421,11 +3374,10 @@ class hr(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
         assert not args
-
 class html(dominate.tags.html_tag):
     """Root element"""
-    name='html'
-    kind=ElementType.normal_elements
+    name = 'html'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -3461,15 +3413,15 @@ class html(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -3490,11 +3442,10 @@ class html(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class i(dominate.tags.html_tag):
     """Alternate voice"""
-    name='i'
-    kind=ElementType.normal_elements
+    name = 'i'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -3529,15 +3480,15 @@ class i(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -3557,11 +3508,10 @@ class i(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class iframe(dominate.tags.html_tag):
     """Nested browsing context"""
-    name='iframe'
-    kind=ElementType.normal_elements
+    name = 'iframe'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -3609,15 +3559,15 @@ class iframe(dominate.tags.html_tag):
         if allow is not None: optional['allow'] = allow
         if (allowfullscreen is not None) and allowfullscreen: optional['allowfullscreen'] = "allowfullscreen"
         if (allowpaymentrequest is not None) and allowpaymentrequest: optional['allowpaymentrequest'] = "allowpaymentrequest"
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if height is not None: optional['height'] = height
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -3644,12 +3594,11 @@ class iframe(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if width is not None: optional['width'] = width
         super().__init__(*args, **optional)
-
 class img(dominate.tags.html_tag):
     """Image"""
-    name='img'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'img'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -3695,17 +3644,17 @@ class img(dominate.tags.html_tag):
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
         if alt is not None: optional['alt'] = alt
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if crossorigin is not None: optional['crossorigin'] = crossorigin
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if decoding is not None: optional['decoding'] = decoding
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if height is not None: optional['height'] = height
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -3733,12 +3682,11 @@ class img(dominate.tags.html_tag):
         if width is not None: optional['width'] = width
         super().__init__(**optional)
         assert not args
-
 class input(dominate.tags.html_tag):
     """Form control"""
-    name='input'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'input'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -3806,20 +3754,20 @@ class input(dominate.tags.html_tag):
         if accept is not None: optional['accept'] = accept
         if accesskey is not None: optional['accesskey'] = accesskey
         if alt is not None: optional['alt'] = alt
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if autocomplete is not None: optional['autocomplete'] = autocomplete
         if (autofocus is not None) and autofocus: optional['autofocus'] = "autofocus"
         if (checked is not None) and checked: optional['checked'] = "checked"
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if dirname is not None: optional['dirname'] = dirname
         if (disabled is not None) and disabled: optional['disabled'] = "disabled"
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
         if formaction is not None: optional['formaction'] = formaction
         if formenctype is not None: optional['formenctype'] = formenctype
@@ -3864,11 +3812,10 @@ class input(dominate.tags.html_tag):
         if width is not None: optional['width'] = width
         super().__init__(**optional)
         assert not args
-
 class ins(dominate.tags.html_tag):
     """An addition to the document"""
-    name='ins'
-    kind=ElementType.normal_elements
+    name = 'ins'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -3905,17 +3852,17 @@ class ins(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if cite is not None: optional['cite'] = cite
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if datetime is not None: optional['datetime'] = datetime
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -3935,11 +3882,10 @@ class ins(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class kbd(dominate.tags.html_tag):
     """User input"""
-    name='kbd'
-    kind=ElementType.normal_elements
+    name = 'kbd'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -3974,15 +3920,15 @@ class kbd(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4002,11 +3948,10 @@ class kbd(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class label(dominate.tags.html_tag):
     """Caption for a form control"""
-    name='label'
-    kind=ElementType.normal_elements
+    name = 'label'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4042,15 +3987,15 @@ class label(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if for_ is not None: optional['html_for'] = for_
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -4071,11 +4016,10 @@ class label(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class legend(dominate.tags.html_tag):
     """Caption for fieldset"""
-    name='legend'
-    kind=ElementType.normal_elements
+    name = 'legend'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4110,15 +4054,15 @@ class legend(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4138,11 +4082,10 @@ class legend(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class li(dominate.tags.html_tag):
     """List item"""
-    name='li'
-    kind=ElementType.normal_elements
+    name = 'li'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4178,15 +4121,15 @@ class li(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4207,12 +4150,11 @@ class li(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
-
 class link(dominate.tags.html_tag):
     """Link metadata"""
-    name='link'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'link'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -4259,17 +4201,17 @@ class link(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if as_ is not None: optional['_as'] = as_
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if crossorigin is not None: optional['crossorigin'] = crossorigin
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if href is not None: optional['href'] = href
         if hreflang is not None: optional['hreflang'] = hreflang
@@ -4300,11 +4242,10 @@ class link(dominate.tags.html_tag):
         if type is not None: optional['type'] = type
         super().__init__(**optional)
         assert not args
-
 class main(dominate.tags.html_tag):
     """Container for the dominant contents of the document"""
-    name='main'
-    kind=ElementType.normal_elements
+    name = 'main'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4339,15 +4280,15 @@ class main(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4367,11 +4308,10 @@ class main(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class map(dominate.tags.html_tag):
     """Image map"""
-    name='map'
-    kind=ElementType.normal_elements
+    name = 'map'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4407,15 +4347,15 @@ class map(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4436,11 +4376,10 @@ class map(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class mark(dominate.tags.html_tag):
     """Highlight"""
-    name='mark'
-    kind=ElementType.normal_elements
+    name = 'mark'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4475,15 +4414,15 @@ class mark(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4503,11 +4442,10 @@ class mark(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class math(dominate.tags.html_tag):
     """MathML root"""
-    name='math'
-    kind=ElementType.normal_elements
+    name = 'math'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4517,18 +4455,17 @@ class math(dominate.tags.html_tag):
         , **kwargs # any extra attributes
     ) -> None:
         optional = {}
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         assert not (set(kwargs) & set(optional)) # collisions
         optional.update(kwargs)
 
         super().__init__(*args, **optional)
-
 class menu(dominate.tags.html_tag):
     """Menu of commands"""
-    name='menu'
-    kind=ElementType.normal_elements
+    name = 'menu'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4563,15 +4500,15 @@ class menu(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4591,12 +4528,11 @@ class menu(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class meta(dominate.tags.html_tag):
     """Text metadata"""
-    name='meta'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'meta'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -4635,17 +4571,17 @@ class meta(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if charset is not None: optional['charset'] = charset
         if class_ is not None: optional['cls'] = class_
         if content is not None: optional['content'] = content
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if http_equiv is not None: optional['http_equiv'] = http_equiv
         if id is not None: optional['id'] = id
@@ -4668,11 +4604,10 @@ class meta(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
         assert not args
-
 class meter(dominate.tags.html_tag):
     """Gauge"""
-    name='meter'
-    kind=ElementType.normal_elements
+    name = 'meter'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4713,15 +4648,15 @@ class meter(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if high is not None: optional['high'] = high
         if id is not None: optional['id'] = id
@@ -4747,11 +4682,10 @@ class meter(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
-
 class nav(dominate.tags.html_tag):
     """Section with navigational links"""
-    name='nav'
-    kind=ElementType.normal_elements
+    name = 'nav'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4786,15 +4720,15 @@ class nav(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4814,11 +4748,10 @@ class nav(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class noscript(dominate.tags.html_tag):
     """Fallback content for script"""
-    name='noscript'
-    kind=ElementType.normal_elements
+    name = 'noscript'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4853,15 +4786,15 @@ class noscript(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -4881,11 +4814,10 @@ class noscript(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class object(dominate.tags.html_tag):
     """Image, nested browsing context, or plugin"""
-    name='object'
-    kind=ElementType.normal_elements
+    name = 'object'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -4927,16 +4859,16 @@ class object(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if data is not None: optional['data'] = data
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
         if height is not None: optional['height'] = height
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
@@ -4962,11 +4894,10 @@ class object(dominate.tags.html_tag):
         if usemap is not None: optional['usemap'] = usemap
         if width is not None: optional['width'] = width
         super().__init__(*args, **optional)
-
 class ol(dominate.tags.html_tag):
     """Ordered list"""
-    name='ol'
-    kind=ElementType.normal_elements
+    name = 'ol'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5004,15 +4935,15 @@ class ol(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5035,11 +4966,10 @@ class ol(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if type is not None: optional['type'] = type
         super().__init__(*args, **optional)
-
 class optgroup(dominate.tags.html_tag):
     """Group of options in a list box"""
-    name='optgroup'
-    kind=ElementType.normal_elements
+    name = 'optgroup'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5076,16 +5006,16 @@ class optgroup(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if (disabled is not None) and disabled: optional['disabled'] = "disabled"
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5106,11 +5036,10 @@ class optgroup(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class option(dominate.tags.html_tag):
     """Option in a list box or combo box control"""
-    name='option'
-    kind=ElementType.normal_elements
+    name = 'option'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5149,16 +5078,16 @@ class option(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if (disabled is not None) and disabled: optional['disabled'] = "disabled"
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5181,11 +5110,10 @@ class option(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
-
 class output(dominate.tags.html_tag):
     """Calculated output value"""
-    name='output'
-    kind=ElementType.normal_elements
+    name = 'output'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5223,15 +5151,15 @@ class output(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if for_ is not None: optional['html_for'] = for_
         if form is not None: optional['form'] = form
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
@@ -5254,11 +5182,10 @@ class output(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class p(dominate.tags.html_tag):
     """Paragraph"""
-    name='p'
-    kind=ElementType.normal_elements
+    name = 'p'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5293,15 +5220,15 @@ class p(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5321,12 +5248,11 @@ class p(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class param(dominate.tags.html_tag):
     """Parameter for object"""
-    name='param'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'param'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -5363,15 +5289,15 @@ class param(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5394,11 +5320,10 @@ class param(dominate.tags.html_tag):
         if value is not None: optional['value'] = value
         super().__init__(**optional)
         assert not args
-
 class picture(dominate.tags.html_tag):
     """Image"""
-    name='picture'
-    kind=ElementType.normal_elements
+    name = 'picture'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5433,15 +5358,15 @@ class picture(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5461,12 +5386,11 @@ class picture(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class pre(dominate.tags.html_tag):
     """Block of preformatted text"""
-    name='pre'
-    kind=ElementType.normal_elements
-    is_pretty=False
+    name = 'pre'
+    kind = ElementType.normal_elements
+    is_pretty = False
 
     def __init__(self,
         *args,
@@ -5501,15 +5425,15 @@ class pre(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5529,11 +5453,10 @@ class pre(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class progress(dominate.tags.html_tag):
     """Progress bar"""
-    name='progress'
-    kind=ElementType.normal_elements
+    name = 'progress'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5570,15 +5493,15 @@ class progress(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5600,11 +5523,10 @@ class progress(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if value is not None: optional['value'] = value
         super().__init__(*args, **optional)
-
 class q(dominate.tags.html_tag):
     """Quotation"""
-    name='q'
-    kind=ElementType.normal_elements
+    name = 'q'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5640,16 +5562,16 @@ class q(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if cite is not None: optional['cite'] = cite
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5669,11 +5591,10 @@ class q(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class rp(dominate.tags.html_tag):
     """Parenthesis for ruby annotation text"""
-    name='rp'
-    kind=ElementType.normal_elements
+    name = 'rp'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5708,15 +5629,15 @@ class rp(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5736,11 +5657,10 @@ class rp(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class rt(dominate.tags.html_tag):
     """Ruby annotation text"""
-    name='rt'
-    kind=ElementType.normal_elements
+    name = 'rt'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5775,15 +5695,15 @@ class rt(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5803,11 +5723,10 @@ class rt(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class ruby(dominate.tags.html_tag):
     """Ruby annotation(s)"""
-    name='ruby'
-    kind=ElementType.normal_elements
+    name = 'ruby'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5842,15 +5761,15 @@ class ruby(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5870,11 +5789,10 @@ class ruby(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class s(dominate.tags.html_tag):
     """Inaccurate text"""
-    name='s'
-    kind=ElementType.normal_elements
+    name = 's'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5909,15 +5827,15 @@ class s(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -5937,11 +5855,10 @@ class s(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class samp(dominate.tags.html_tag):
     """Computer output"""
-    name='samp'
-    kind=ElementType.normal_elements
+    name = 'samp'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -5976,15 +5893,15 @@ class samp(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6004,18 +5921,17 @@ class samp(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class script(dominate.tags.html_tag):
     """Embedded script"""
-    name='script'
-    kind=ElementType.raw_text_elements
-    is_pretty=False
+    name = 'script'
+    kind = ElementType.raw_text_elements
+    is_pretty = False
 
     def __init__(self,
         *args,
         accesskey:          Optional[str] = None,
         aria:               Optional[Aria] = None, # `aria-*` attributes
-        async:              Optional[bool] = None,
+        async_:             Optional[bool] = None, # 'async' is a keyword
         autocapitalize:     Optional[Literal['characters', 'none', 'off', 'on', 'sentences', 'words']] = None,
         class_:             Optional[str] = None, # 'class' is a keyword
         contenteditable:    Optional[bool] = None,
@@ -6051,18 +5967,18 @@ class script(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
-        if (async is not None) and async: optional['async'] = "async"
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
+        if (async_ is not None) and async_: optional['_async'] = "async"
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if crossorigin is not None: optional['crossorigin'] = crossorigin
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if (defer is not None) and defer: optional['defer'] = "defer"
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6091,11 +6007,10 @@ class script(dominate.tags.html_tag):
             super().__init__(dominate.util.raw(*args), **optional)
         else:
             super().__init__(**optional)
-
 class section(dominate.tags.html_tag):
     """Generic document or application section"""
-    name='section'
-    kind=ElementType.normal_elements
+    name = 'section'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6130,15 +6045,15 @@ class section(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6158,11 +6073,10 @@ class section(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class select(dominate.tags.html_tag):
     """List box control"""
-    name='select'
-    kind=ElementType.normal_elements
+    name = 'select'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6205,18 +6119,18 @@ class select(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if autocomplete is not None: optional['autocomplete'] = autocomplete
         if (autofocus is not None) and autofocus: optional['autofocus'] = "autofocus"
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if (disabled is not None) and disabled: optional['disabled'] = "disabled"
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -6241,11 +6155,10 @@ class select(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class slot(dominate.tags.html_tag):
     """Shadow tree slot"""
-    name='slot'
-    kind=ElementType.normal_elements
+    name = 'slot'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6281,15 +6194,15 @@ class slot(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6310,11 +6223,10 @@ class slot(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class small(dominate.tags.html_tag):
     """Side comment"""
-    name='small'
-    kind=ElementType.normal_elements
+    name = 'small'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6349,15 +6261,15 @@ class small(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6377,12 +6289,11 @@ class small(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class source(dominate.tags.html_tag):
     """Image source for img or media source for video or audio"""
-    name='source'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'source'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -6422,15 +6333,15 @@ class source(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6456,11 +6367,10 @@ class source(dominate.tags.html_tag):
         if type is not None: optional['type'] = type
         super().__init__(**optional)
         assert not args
-
 class span(dominate.tags.html_tag):
     """Generic phrasing container"""
-    name='span'
-    kind=ElementType.normal_elements
+    name = 'span'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6495,15 +6405,15 @@ class span(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6523,11 +6433,10 @@ class span(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class strong(dominate.tags.html_tag):
     """Importance"""
-    name='strong'
-    kind=ElementType.normal_elements
+    name = 'strong'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6562,15 +6471,15 @@ class strong(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6590,12 +6499,11 @@ class strong(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class style(dominate.tags.html_tag):
     """Embedded styling information"""
-    name='style'
-    kind=ElementType.raw_text_elements
-    is_pretty=False
+    name = 'style'
+    kind = ElementType.raw_text_elements
+    is_pretty = False
 
     def __init__(self,
         *args,
@@ -6631,15 +6539,15 @@ class style(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6665,11 +6573,10 @@ class style(dominate.tags.html_tag):
             super().__init__(dominate.util.raw(*args), **optional)
         else:
             super().__init__(**optional)
-
 class sub(dominate.tags.html_tag):
     """Subscript"""
-    name='sub'
-    kind=ElementType.normal_elements
+    name = 'sub'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6704,15 +6611,15 @@ class sub(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6732,11 +6639,10 @@ class sub(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class summary(dominate.tags.html_tag):
     """Caption for details"""
-    name='summary'
-    kind=ElementType.normal_elements
+    name = 'summary'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6771,15 +6677,15 @@ class summary(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6799,11 +6705,10 @@ class summary(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class sup(dominate.tags.html_tag):
     """Superscript"""
-    name='sup'
-    kind=ElementType.normal_elements
+    name = 'sup'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6838,15 +6743,15 @@ class sup(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6866,11 +6771,10 @@ class sup(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class svg(dominate.tags.html_tag):
     """SVG root"""
-    name='svg'
-    kind=ElementType.normal_elements
+    name = 'svg'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6880,18 +6784,17 @@ class svg(dominate.tags.html_tag):
         , **kwargs # any extra attributes
     ) -> None:
         optional = {}
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         assert not (set(kwargs) & set(optional)) # collisions
         optional.update(kwargs)
 
         super().__init__(*args, **optional)
-
 class table(dominate.tags.html_tag):
     """Table"""
-    name='table'
-    kind=ElementType.normal_elements
+    name = 'table'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6926,15 +6829,15 @@ class table(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -6954,11 +6857,10 @@ class table(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class tbody(dominate.tags.html_tag):
     """Group of rows in a table"""
-    name='tbody'
-    kind=ElementType.normal_elements
+    name = 'tbody'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -6993,15 +6895,15 @@ class tbody(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7021,11 +6923,10 @@ class tbody(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class td(dominate.tags.html_tag):
     """Table cell"""
-    name='td'
-    kind=ElementType.normal_elements
+    name = 'td'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -7063,16 +6964,16 @@ class td(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if colspan is not None: optional['colspan'] = colspan
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if headers is not None: optional['headers'] = headers
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -7094,11 +6995,10 @@ class td(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class template(dominate.tags.html_tag):
     """Template"""
-    name='template'
-    kind=ElementType.the_template_element
+    name = 'template'
+    kind = ElementType.the_template_element
 
     def __init__(self,
         *args,
@@ -7133,15 +7033,15 @@ class template(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7161,12 +7061,11 @@ class template(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class textarea(dominate.tags.html_tag):
     """Multiline text controls"""
-    name='textarea'
-    kind=ElementType.escapable_raw_text_elements
-    is_pretty=False
+    name = 'textarea'
+    kind = ElementType.escapable_raw_text_elements
+    is_pretty = False
 
     def __init__(self,
         *args,
@@ -7214,19 +7113,19 @@ class textarea(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if (autofocus is not None) and autofocus: optional['autofocus'] = "autofocus"
         if class_ is not None: optional['cls'] = class_
         if cols is not None: optional['cols'] = cols
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if dirname is not None: optional['dirname'] = dirname
         if (disabled is not None) and disabled: optional['disabled'] = "disabled"
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if form is not None: optional['form'] = form
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -7255,11 +7154,10 @@ class textarea(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if wrap is not None: optional['wrap'] = wrap
         super().__init__(*args, **optional)
-
 class tfoot(dominate.tags.html_tag):
     """Group of footer rows in a table"""
-    name='tfoot'
-    kind=ElementType.normal_elements
+    name = 'tfoot'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -7294,15 +7192,15 @@ class tfoot(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7322,11 +7220,10 @@ class tfoot(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class th(dominate.tags.html_tag):
     """Table header cell"""
-    name='th'
-    kind=ElementType.normal_elements
+    name = 'th'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -7367,16 +7264,16 @@ class th(dominate.tags.html_tag):
         optional = {}
         if abbr is not None: optional['abbr'] = abbr
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if colspan is not None: optional['colspan'] = colspan
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if headers is not None: optional['headers'] = headers
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -7399,11 +7296,10 @@ class th(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class thead(dominate.tags.html_tag):
     """Group of heading rows in a table"""
-    name='thead'
-    kind=ElementType.normal_elements
+    name = 'thead'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -7438,15 +7334,15 @@ class thead(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7466,11 +7362,10 @@ class thead(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class time(dominate.tags.html_tag):
     """Machine-readable equivalent of date- or time-related data"""
-    name='time'
-    kind=ElementType.normal_elements
+    name = 'time'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -7506,16 +7401,16 @@ class time(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if datetime is not None: optional['datetime'] = datetime
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7535,11 +7430,10 @@ class time(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class title(dominate.tags.html_tag):
     """Document title"""
-    name='title'
-    kind=ElementType.escapable_raw_text_elements
+    name = 'title'
+    kind = ElementType.escapable_raw_text_elements
 
     def __init__(self,
         *args,
@@ -7574,15 +7468,15 @@ class title(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7602,11 +7496,10 @@ class title(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class tr(dominate.tags.html_tag):
     """Table row"""
-    name='tr'
-    kind=ElementType.normal_elements
+    name = 'tr'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -7641,15 +7534,15 @@ class tr(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7669,12 +7562,11 @@ class tr(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class track(dominate.tags.html_tag):
     """Timed text track"""
-    name='track'
-    kind=ElementType.void_elements
-    is_single=True
+    name = 'track'
+    kind = ElementType.void_elements
+    is_single = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -7714,16 +7606,16 @@ class track(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if (default is not None) and default: optional['default'] = "default"
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7748,11 +7640,10 @@ class track(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
         assert not args
-
 class u(dominate.tags.html_tag):
     """Unarticulated annotation"""
-    name='u'
-    kind=ElementType.normal_elements
+    name = 'u'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -7787,15 +7678,15 @@ class u(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7815,11 +7706,10 @@ class u(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class ul(dominate.tags.html_tag):
     """List"""
-    name='ul'
-    kind=ElementType.normal_elements
+    name = 'ul'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -7854,15 +7744,15 @@ class ul(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7882,11 +7772,10 @@ class ul(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class var(dominate.tags.html_tag):
     """Variable"""
-    name='var'
-    kind=ElementType.normal_elements
+    name = 'var'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -7921,15 +7810,15 @@ class var(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -7949,11 +7838,10 @@ class var(dominate.tags.html_tag):
         if title is not None: optional['title'] = title
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(*args, **optional)
-
 class video(dominate.tags.html_tag):
     """Video player"""
-    name='video'
-    kind=ElementType.normal_elements
+    name = 'video'
+    kind = ElementType.normal_elements
 
     def __init__(self,
         *args,
@@ -7999,18 +7887,18 @@ class video(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if (autoplay is not None) and autoplay: optional['autoplay'] = "autoplay"
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
         if (controls is not None) and controls: optional['controls'] = "controls"
         if crossorigin is not None: optional['crossorigin'] = crossorigin
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if height is not None: optional['height'] = height
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
@@ -8038,13 +7926,12 @@ class video(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         if width is not None: optional['width'] = width
         super().__init__(*args, **optional)
-
 class wbr(dominate.tags.html_tag):
     """Line breaking opportunity"""
-    name='wbr'
-    kind=ElementType.void_elements
-    is_single=True
-    is_inline=True
+    name = 'wbr'
+    kind = ElementType.void_elements
+    is_single = True
+    is_inline = True
 
     def __init__(self,
         *args: None, # this is a void element
@@ -8079,15 +7966,15 @@ class wbr(dominate.tags.html_tag):
     ) -> None:
         optional = {}
         if accesskey is not None: optional['accesskey'] = accesskey
-        if aria is not None: optional.update({'aria-'+k: v for k, v in aria.kwargs.items()})
+        if aria is not None: optional.update({'aria-' + k: v for k, v in aria.kwargs.items()})
         if autocapitalize is not None: optional['autocapitalize'] = autocapitalize
         if class_ is not None: optional['cls'] = class_
         if contenteditable is not None: optional['contenteditable'] = "true" if contenteditable else "false"
-        if custom is not None: optional.update({'data-'+k: v for k, v in custom.items()})
+        if custom is not None: optional.update({'data-' + k: v for k, v in custom.items()})
         if dir is not None: optional['dir'] = dir
         if draggable is not None: optional['draggable'] = "true" if draggable else "false"
         if enterkeyhint is not None: optional['enterkeyhint'] = enterkeyhint
-        if events is not None: optional.update({'on'+k: v for k, v in events.kwargs.items()})
+        if events is not None: optional.update({'on' + k: v for k, v in events.kwargs.items()})
         if (hidden is not None) and hidden: optional['hidden'] = "hidden"
         if id is not None: optional['id'] = id
         if inputmode is not None: optional['inputmode'] = inputmode
@@ -8108,4 +7995,3 @@ class wbr(dominate.tags.html_tag):
         if translate is not None: optional['translate'] = "yes" if translate else "no"
         super().__init__(**optional)
         assert not args
-

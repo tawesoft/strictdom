@@ -16,7 +16,7 @@ def test_boolean_attributes_true():
     )
 
     assert el.render() == \
-           """<button disabled="disabled" spellcheck="true" translate="yes">Hello world</button>"""
+        """<button disabled="disabled" spellcheck="true" translate="yes">Hello world</button>"""
 
 
 def test_boolean_attributes_false():
@@ -28,7 +28,7 @@ def test_boolean_attributes_false():
     )
 
     assert el.render() == \
-           """<button spellcheck="false" translate="no">Hello world</button>"""
+        """<button spellcheck="false" translate="no">Hello world</button>"""
 
 
 def test_reserved_keyword_attributes():
@@ -38,7 +38,7 @@ def test_reserved_keyword_attributes():
     )
 
     assert el.render() == \
-           """<div class="class_name">Hello world</div>"""
+        """<div class="class_name">Hello world</div>"""
 
 
 def test_keyword_attributes():
@@ -47,7 +47,7 @@ def test_keyword_attributes():
     )
 
     assert el.render() == \
-           """<div autocapitalize="sentences">Hello world</div>"""
+        """<div autocapitalize="sentences">Hello world</div>"""
 
 
 def test_void():
@@ -69,7 +69,8 @@ def test_aria():
         aria=tags.Aria(pressed="true")
     )
 
-    assert el.render() == """<div aria-pressed="true" role="button">Hello world</div>"""
+    assert el.render() == \
+        """<div aria-pressed="true" role="button">Hello world</div>"""
 
 
 def test_data():
@@ -78,7 +79,8 @@ def test_data():
         custom={"foo": "bar", "color": "red"}
     )
 
-    assert el.render() == """<div data-color="red" data-foo="bar">Hello world</div>"""
+    assert el.render() == \
+        """<div data-color="red" data-foo="bar">Hello world</div>"""
 
 
 def test_events():
@@ -90,7 +92,8 @@ def test_events():
         )
     )
 
-    assert el.render() == """<div onclick="alert(&quot;Click Event!&quot;);" ondrag="alert(&quot;Drag Event!&quot;);">Hello world</div>"""
+    assert el.render() == \
+        """<div onclick="alert(&quot;Click Event!&quot;);" ondrag="alert(&quot;Drag Event!&quot;);">Hello world</div>"""
 
 
 def test_raw_text_elements():
@@ -115,8 +118,7 @@ def test_raw_text_elements():
 
 
 def test_escapable_raw_text_elements():
-        # e.g. <textarea>, <title>
-        assert tags.textarea().render() == """<textarea></textarea>"""
-        assert tags.textarea("Hi<b>!", class_="hello").render() == \
-           """<textarea class="hello">Hi&lt;b&gt;!</textarea>"""
-
+    # e.g. <textarea>, <title>
+    assert tags.textarea().render() == """<textarea></textarea>"""
+    assert tags.textarea("Hi<b>!", class_="hello").render() == \
+        """<textarea class="hello">Hi&lt;b&gt;!</textarea>"""

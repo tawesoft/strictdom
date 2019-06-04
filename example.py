@@ -1,3 +1,6 @@
+import strictdom.tags_1 as tags
+import dominate.tags as dom
+
 """
 
 
@@ -16,23 +19,17 @@ print(tags.button("Hello world",
 """
 
 
-import strictdom.tags_1 as tags
-
-
 def print_foo():
 
     print(tags.button("Hello world",
         class_="hello",
-        some_invalid_tag="hello",
+        # some_invalid_tag="hello",
         events=tags.Events(click="alert('Hello world');")
     ))
 
 
 print_foo()
 
-
-
-import dominate.tags as dom
 
 print(dom.button("Hello world",
     cls="hello",
